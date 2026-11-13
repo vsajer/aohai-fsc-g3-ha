@@ -76,7 +76,6 @@ async def async_setup_entry(hass, entry, async_add_entities):
         SandiSolarSelect(hub, 'parallel_role', 'Parallel Role', {f"Raw {i}": i for i in [0, 1]}, "mdi:cog", advanced=True),
         SandiSolarSelect(hub, 'bms_work_mode', 'BMS Work Mode', {f"Raw {i}": i for i in [0, 1, 2]}, "mdi:cog", advanced=True),
         SandiSolarSelect(hub, 'battery_subtype', 'Battery Subtype', {f"Raw {i}": i for i in [0, 1, 2]}, "mdi:cog", advanced=True),
-        SandiSolarSelect(hub, 'second_port_mode', 'Second Port Mode', {f"Raw {i}": i for i in [0, 1, 3]}, "mdi:cog", advanced=True),
     ])
 
     async_add_entities(entities)
