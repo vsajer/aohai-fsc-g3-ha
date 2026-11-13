@@ -1,5 +1,5 @@
 {
-  "title": "AOHAI FSC-G3 / SD-PRO-EU Modbus RTU",
+  "title": "AOHAI FSC-G3 Modbus RTU",
   "config": {
     "step": {
       "user": {
@@ -16,7 +16,7 @@
     "error": {
       "cannot_connect": "Nie udało się połączyć z urządzeniem.",
       "invalid_port": "Nieprawidłowy port szeregowy.",
-      "invalid_slave": "Slave ID musi być w zakresie od 1 do 247.",
+      "invalid_slave": "Adres Modbus musi wynosić od 1 do 245.",
       "invalid_update_interval": "Interwał aktualizacji musi wynosić co najmniej 5 sekund.",
       "unknown": "Nieznany błąd."
     },
@@ -30,12 +30,20 @@
         "title": "Opcje AOHAI FSC-G3 Modbus RTU",
         "description": "Dostosuj interwał aktualizacji.",
         "data": {
-          "update_interval": "Interwał aktualizacji (sekundy)"
+          "update_interval": "Interwał aktualizacji (sekundy)",
+          "settings_refresh_interval": "Interwał odświeżania ustawień (sekundy)",
+          "write_verify_delay": "Opóźnienie weryfikacji zapisu (sekundy)",
+          "eta_full_real_soc_threshold": "Próg pełnego naładowania SOC (%)",
+          "avg_pv_alpha": "Współczynnik uśredniania mocy PV",
+          "avg_battery_alpha": "Współczynnik uśredniania mocy baterii",
+          "avg_grid_alpha": "Współczynnik uśredniania mocy sieci",
+          "avg_eps_alpha": "Współczynnik uśredniania mocy EPS"
         }
       }
     },
     "error": {
-      "invalid_update_interval": "Interwał aktualizacji musi wynosić co najmniej 5 sekund."
+      "invalid_update_interval": "Interwał aktualizacji musi wynosić co najmniej 5 sekund.",
+      "invalid_eta_threshold": "Próg musi wynosić od 90 do 100%."
     }
   }
 }

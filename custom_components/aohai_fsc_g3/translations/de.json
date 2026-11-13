@@ -16,7 +16,7 @@
     "error": {
       "cannot_connect": "Verbindung zum Gerät fehlgeschlagen.",
       "invalid_port": "Ungültiger serieller Port.",
-      "invalid_slave": "Slave-ID muss zwischen 1 und 247 liegen.",
+      "invalid_slave": "Slave-ID muss zwischen 1 und 245 liegen.",
       "invalid_update_interval": "Das Aktualisierungsintervall muss mindestens 5 Sekunden betragen.",
       "unknown": "Unbekannter Fehler."
     },

@@ -52,7 +52,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
             "charge_limit",
             "Battery Charge Limit",
             PERCENTAGE,
-            10,
+            0,
             100,
             1,
             "mdi:battery-charging",
@@ -62,7 +62,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
             "discharge_limit",
             "Battery Discharge Limit",
             PERCENTAGE,
-            10,
+            0,
             100,
             1,
             "mdi:battery-minus",
@@ -106,7 +106,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
             "on_grid_recovery_soc",
             "Battery On-Grid Recovery SOC",
             PERCENTAGE,
-            10,
+            20,
             100,
             1,
             "mdi:battery-sync",
@@ -198,7 +198,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
     ]
 
     entities.extend([
-        SandiSolarNumber(hub, 'battery_max_charge_current', 'Battery Max Charge Current', 'A', 10, 120, 1, "mdi:cog", advanced=True),
+        SandiSolarNumber(hub, 'battery_max_charge_current', 'Battery Max Charge Current', 'A', 1, 120, 1, "mdi:cog", advanced=True),
         SandiSolarNumber(hub, 'battery_stop_discharge_voltage', 'Battery Stop Discharge Voltage', 'V', 40, 52, 0.01, "mdi:cog", advanced=True),
         SandiSolarNumber(hub, 'battery_constant_charge_voltage', 'Battery Constant Charge Voltage', 'V', 48, 59.2, 0.01, "mdi:cog", advanced=True),
         SandiSolarNumber(hub, 'battery_cutoff_voltage', 'Battery Under Voltage Cut-off', 'V', 40, 48, 0.1, "mdi:cog", advanced=True),
@@ -208,7 +208,6 @@ async def async_setup_entry(hass, entry, async_add_entities):
         SandiSolarNumber(hub, 'boost_charge_max_time', 'Boost Charge Max Time', 'min', 5, 900, 1, "mdi:cog", advanced=True),
         SandiSolarNumber(hub, 'battery_undervoltage_alarm', 'Battery Under Voltage Alarm', 'V', 40, 50, 0.1, "mdi:cog", advanced=True),
         SandiSolarNumber(hub, 'grid_power_compensation', 'Grid Power Compensation', 'W', 0, 200, 1, "mdi:cog", advanced=True),
-        SandiSolarNumber(hub, 'smart_load_off_soc', 'Smart Load Off SOC', '%', 10, 95, 1, "mdi:cog", advanced=True),
     ])
 
     async_add_entities(entities)
@@ -512,3 +511,4 @@ class SandiSolarLocalNumber(NumberEntity, RestoreEntity):
         self._hub._cache[self._key] = self._state
 
         self.async_write_ha_state()
+

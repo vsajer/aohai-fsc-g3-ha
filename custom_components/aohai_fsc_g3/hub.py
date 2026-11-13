@@ -142,7 +142,7 @@ class SandiSolarModbusHub:
             parity="N",
             stopbits=1,
             timeout=3,
-            retries=2,
+            retries=0,
         )
 
     async def close(self):
@@ -310,7 +310,7 @@ class SandiSolarModbusHub:
             _LOGGER.error("SANDISOLAR: Unknown holding register '%s'", key)
             return False
 
-        if HOLDING_REGISTERS[key].address in (218, 220):
+        if HOLDING_REGISTERS[key].address in (218, 220, 226):
             _LOGGER.error("AOHAI FSC-G3: write to disputed register blocked: %s", HOLDING_REGISTERS[key].address)
             return False
 
@@ -550,3 +550,4 @@ class SandiSolarModbusHub:
             value = (value << 16) | reg
 
         return value
+

@@ -11,9 +11,9 @@ from .const import DOMAIN
 _LOGGER = logging.getLogger(__name__)
 
 
-SOURCE_PRIORITY_OPTIONS = {f"Raw {i}": i for i in (0, 1, 2, 10)}
+SOURCE_PRIORITY_OPTIONS = {"SOL (0)": 0, "UTI (1)": 1, "SBU (2)": 2, "Grid output mode (10)": 10}
 
-CHARGE_PRIORITY_OPTIONS = {f"Raw {i}": i for i in (0, 1, 2)}
+CHARGE_PRIORITY_OPTIONS = {"CSO (0)": 0, "SNU (1)": 1, "OSO (2)": 2}
 
 GEN_PORT_WORK_MODE_OPTIONS = {
     "0 – Default": 0,
@@ -25,15 +25,7 @@ GEN_PORT_WORK_MODE_OPTIONS = {
     "6 – AC Couple on SecEPS Side": 6,
 }
 
-# Hodnoty zatím nemáme spolehlivě potvrzené z dokumentace.
-# Proto nechávám obecné názvy a raw_value v atributech.
-AC_INPUT_TYPE_OPTIONS = {
-    "0 – Type 0": 0,
-    "1 – Type 1": 1,
-    "2 – Type 2": 2,
-    "3 – Type 3": 3,
-}
-
+AC_INPUT_TYPE_OPTIONS = {"APL (0)": 0, "UPS (1)": 1}
 
 async def async_setup_entry(hass, entry, async_add_entities):
     data = hass.data[DOMAIN][entry.entry_id]
@@ -72,10 +64,10 @@ async def async_setup_entry(hass, entry, async_add_entities):
     ]
 
     entities.extend([
-        SandiSolarSelect(hub, 'parallel_mode', 'Parallel Mode', {f"Raw {i}": i for i in [0, 1, 2, 3, 4]}, "mdi:cog", advanced=True),
-        SandiSolarSelect(hub, 'parallel_role', 'Parallel Role', {f"Raw {i}": i for i in [0, 1]}, "mdi:cog", advanced=True),
-        SandiSolarSelect(hub, 'bms_work_mode', 'BMS Work Mode', {f"Raw {i}": i for i in [0, 1, 2]}, "mdi:cog", advanced=True),
-        SandiSolarSelect(hub, 'battery_subtype', 'Battery Subtype', {f"Raw {i}": i for i in [0, 1, 2]}, "mdi:cog", advanced=True),
+        SandiSolarSelect(hub, 'parallel_mode', 'Parallel Mode', {"SIG (0)": 0, "PAL (1)": 1, "3P1 (2)": 2, "3P2 (3)": 3, "3P3 (4)": 4}, "mdi:cog", advanced=True),
+        SandiSolarSelect(hub, 'parallel_role', 'Parallel Role', {'Master (0)': 0, 'Slave (1)': 1}, "mdi:cog", advanced=True),
+        SandiSolarSelect(hub, 'bms_work_mode', 'BMS Work Mode', {'Disabled (0)': 0, 'CAN (1)': 1, 'RS485 (2)': 2}, "mdi:cog", advanced=True),
+        SandiSolarSelect(hub, 'battery_subtype', 'Battery Type', {'Lead-acid (0)': 0, 'Lithium (1)': 1, 'Lithium no communication (2)': 2, 'User 2 (3)': 3, 'User 3 (4)': 4, 'No battery (5)': 5}, "mdi:cog", advanced=True),
     ])
 
     async_add_entities(entities)
@@ -263,4 +255,5 @@ class SandiSolarSelect(SelectEntity):
             ]
 
         self.async_write_ha_state()
+
 

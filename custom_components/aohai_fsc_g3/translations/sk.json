@@ -16,7 +16,7 @@
     "error": {
       "cannot_connect": "Nepodarilo sa pripojiť k zariadeniu.",
       "invalid_port": "Neplatný sériový port.",
-      "invalid_slave": "Slave ID musí byť v rozsahu 1 až 247.",
+      "invalid_slave": "Slave ID musí byť v rozsahu 1 až 245.",
       "invalid_update_interval": "Interval aktualizácie musí byť aspoň 5 sekúnd.",
       "unknown": "Neznáma chyba."
     },

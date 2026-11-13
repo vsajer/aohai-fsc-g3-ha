@@ -110,12 +110,10 @@ HOLDING_REGISTERS = {
     "boost_charge_max_time": RegisterDef(194, 1),
     "battery_undervoltage_alarm": RegisterDef(195, 0.1),
     "grid_power_compensation": RegisterDef(215, 1),
-    "smart_load_off_soc": RegisterDef(226, 1),
     "parallel_mode": RegisterDef(211, 1),
     "parallel_role": RegisterDef(213, 1),
     "bms_work_mode": RegisterDef(214, 1),
     "battery_subtype": RegisterDef(125, 1),
-    "second_port_mode": RegisterDef(218, 1),
 
     # ---------------------------------------------------------------------
     # System
@@ -192,4 +190,5 @@ HOLDING_REGISTERS = {
     # ---------------------------------------------------------------------
     "bluetooth_enable": RegisterDef(231),
 }
+
 

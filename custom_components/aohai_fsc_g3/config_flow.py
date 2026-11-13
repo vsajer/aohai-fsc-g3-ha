@@ -9,20 +9,20 @@ from .const import DOMAIN, DEFAULT_SCAN_INTERVAL
 
 
 UPDATE_INTERVAL_OPTIONS = [
-    {"value": "5", "label": "5 sekund"},
-    {"value": "10", "label": "10 sekund"},
-    {"value": "15", "label": "15 sekund"},
-    {"value": "30", "label": "30 sekund"},
-    {"value": "60", "label": "60 sekund"},
+    {"value": "5", "label": "5 s"},
+    {"value": "10", "label": "10 s"},
+    {"value": "15", "label": "15 s"},
+    {"value": "30", "label": "30 s"},
+    {"value": "60", "label": "60 s"},
 ]
 
 SETTINGS_REFRESH_INTERVAL_OPTIONS = [
-    {"value": "10", "label": "10 sekund"},
-    {"value": "15", "label": "15 sekund"},
-    {"value": "30", "label": "30 sekund"},
-    {"value": "60", "label": "60 sekund"},
-    {"value": "120", "label": "120 sekund"},
-    {"value": "300", "label": "300 sekund"},
+    {"value": "10", "label": "10 s"},
+    {"value": "15", "label": "15 s"},
+    {"value": "30", "label": "30 s"},
+    {"value": "60", "label": "60 s"},
+    {"value": "120", "label": "120 s"},
+    {"value": "300", "label": "300 s"},
 ]
 
 WRITE_VERIFY_DELAY_OPTIONS = [
@@ -83,7 +83,7 @@ class SandiSolarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             update_interval = int(user_input["update_interval"])
 
-            if user_input["slave"] < 1 or user_input["slave"] > 247:
+            if user_input["slave"] < 1 or user_input["slave"] > 245:
                 errors["slave"] = "invalid_slave"
 
             if update_interval < 5:
@@ -266,3 +266,4 @@ class SandiSolarOptionsFlow(config_entries.OptionsFlow):
             data_schema=schema,
             errors=errors,
         )
+

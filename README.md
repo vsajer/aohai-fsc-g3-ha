@@ -1,5 +1,7 @@
 # AOHAI FSC-G3 Modbus pro Home Assistant
 
+[🇵🇱 Instrukcja po polsku](README_PL.md)
+
 Experimentální HACS integrace pro **AOHAI FSC-8/10/12K1P-BL-G3**, odvozená z [SANDISOLAR HA](https://github.com/vsajer/sandisolar-ha). Projekt zatím nemá potvrzený test se skutečným měničem FSC-G3. Kompatibilita jednotlivých verzí a firmwarů vyžaduje zpětnou vazbu testerů.
 
 Obsahuje senzory, výpočty, nastavení baterie, přepínače a výběry převzaté z původní integrace a další FSC-G3 registry podle veřejné [ESPHome konfigurace pro 12 kW](https://github.com/bootuz-dinamon/Sandisolar-Aohai-FSC-12K1P-BL-G3-Home-Assistant-integration-via-RS485). U činného výkonu a hodnot sítě je třeba ověřit znaménko a skutečný význam. Položky převzaté z jiného měniče nemusí odpovídat FSC-G3.
@@ -16,7 +18,9 @@ Používá se přímé sériové Modbus RTU připojení. Připojení ESPHome k U
 
 **Zápisové entity jsou při prvním přidání ve výchozím stavu vypnuté.** V Home Assistantu lze jednotlivé entity zapnout pro cílené testování. Před změnou porovnejte aktuální hodnotu, jednotku, hranice a funkci s displejem a dokumentací konkrétního zařízení. Uložte si původní nastavení. Nastavení baterie, zdrojů a výstupu může ovlivnit provoz instalace. Neověřené senzory nepoužívejte pro automatizace.
 
-Registrační hodnoty voličů priorit a nových režimů jsou kvůli rozdílům ve zdrojích zobrazené jako Raw. Význam ověřte pro konkrétní firmware. Zápis do holding registru 220 je zablokovaný: existující zdroje mu přiřazují odlišný význam. Sporné ovládání SecEPS napětím není vystaveno.
+Hodnoty režimů vycházejí z protokolu výrobce V2.14 a musí být ověřeny na konkrétním firmwaru. Zápis do holding registrů 218, 220 a 226 je prozatím zablokovaný: registr 218 představuje jmenovitý výkon generátoru, 220 napětí zapnutí SecEPS pro olověnou baterii a 226 není v poskytnuté tabulce popsán. Význam senzoru AC Power To User a znaménka výkonů je třeba ověřit.
+
+Protokol vyžaduje odstup nejméně 850 ms mezi příkazy. Protože integrace zatím čte registry jednotlivě, celý cyklus může trvat déle než zvolený interval aktualizace.
 
 Snímky v `docs/images` pocházejí z původní integrace a slouží pouze jako ilustrační příklady.
 

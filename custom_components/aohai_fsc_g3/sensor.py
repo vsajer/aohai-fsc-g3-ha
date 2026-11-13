@@ -462,7 +462,7 @@ class SimpleSensor(BaseSandiSensor):
 
 
 class GridPowerSensor(BaseSandiSensor):
-    """Grid AC input power from Modbus Input 320-321 on AO-6KSL-G3."""
+    """AC power to user from Modbus Input 320-321; interpretation requires device testing."""
 
     _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_device_class = SensorDeviceClass.POWER
@@ -476,8 +476,8 @@ class GridPowerSensor(BaseSandiSensor):
             "modbus_function": 4,
             "modbus_registers": "320-321",
             "scale": 0.1,
-            "measurement_type": "grid_ac_input_power",
-            "verified_model": "AO-6KSL-G3",
+            "measurement_type": "ac_power_to_user",
+            "protocol": "V2.14",
         }
 
 
@@ -2111,7 +2111,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
                      UnitOfElectricCurrent.AMPERE, SensorDeviceClass.CURRENT, "mdi:transmission-tower", 1),
         SimpleSensor(coordinator, "grid_frequency", "Grid Frequency",
                      UnitOfFrequency.HERTZ, SensorDeviceClass.FREQUENCY, "mdi:sine-wave", 2),
-        GridPowerSensor(coordinator, "grid_power", "Grid Power"),
+        GridPowerSensor(coordinator, "grid_power", "AC Power To User"),
         SimpleSensor(coordinator, "grid_power_factor", "Grid Power Factor",
                      None, None, "mdi:cosine-wave", 4),
         SimpleSensor(coordinator, "inverter_ac_voltage", "Inverter AC Voltage",
@@ -2127,7 +2127,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
         TimedAveragePowerSensor(
             coordinator,
             "avg_grid_power",
-            "AVG Grid Power",
+            "AVG AC Power To User",
             "grid",
             "mdi:transmission-tower",
             alpha=0.25,
@@ -2202,4 +2202,5 @@ async def async_setup_entry(hass, entry, async_add_entities):
 
     # Run first real Modbus refresh in background.
     hass.async_create_task(coordinator.async_request_refresh())
+
 

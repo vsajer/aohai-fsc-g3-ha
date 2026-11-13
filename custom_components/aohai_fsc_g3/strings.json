@@ -14,7 +14,7 @@
     },
     "error": {
       "cannot_connect": "Failed to connect to device",
-      "invalid_slave": "Slave ID must be between 1 and 247",
+      "invalid_slave": "Slave ID must be between 1 and 245",
       "invalid_update_interval": "Update interval must be at least 5 seconds"
     }
   },

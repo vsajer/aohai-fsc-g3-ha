@@ -59,7 +59,7 @@ SYSTEM_FLAG_SWITCHES = [
     },
     {
         "key": "sec_eps_output",
-        "name": "SecEPS Output",
+        "name": "Dual Channel Load Enable",
         "bit": 6,
         "icon": "mdi:power-plug",
         "advanced": False,
@@ -524,3 +524,4 @@ class SandiSolarRegisterSwitch(SwitchEntity):
             "read_error": False,
         }
         self.async_write_ha_state()
+
