@@ -12,7 +12,7 @@ Obsahuje senzory, výpočty, nastavení baterie, přepínače a výběry převza
 2. Nainstalujte výchozí větev, restartujte Home Assistant a přidejte **AOHAI FSC-G3 Modbus**.
 3. Nastavte sériový port, baud rate a Modbus ID podle svého připojení. Výchozí hodnoty jsou 9600, 1 a 8N1.
 
-Používá se přímé sériové Modbus RTU připojení. Připojení ESPHome k UART originálního Wi-Fi modulu je samostatné řešení, které tato integrace přímo neposkytuje. Jeden sériový port nesdílejte současně s jiným masterem.
+Kromě USB–RS485 je od verze 0.4.0 dostupné experimentální připojení přes Modbus TCP/RTU bránu. Postup pro [USR-DR164 přes Wi-Fi](docs/USR-DR164-CS.md). Připojení ESPHome k UART originálního Wi-Fi modulu je samostatné řešení. Jeden sériový port nesdílejte současně s jiným masterem.
 
 ## Testování a ovládání
 

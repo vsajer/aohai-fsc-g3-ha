@@ -19,6 +19,9 @@ async def async_get_config_entry_diagnostics(
     hub: SandiSolarModbusHub = hass.data[DOMAIN][entry.entry_id]["hub"]
 
     diagnostics: dict[str, Any] = {
+        "transport": hub.transport,
+        "host": hub.host,
+        "tcp_port": hub.tcp_port if hub.transport == "tcp" else None,
         "port": hub.port,
         "baudrate": hub.baudrate,
         "slave": hub.slave,
@@ -40,3 +43,4 @@ async def async_get_config_entry_diagnostics(
         diagnostics["registers"] = "dump_all_registers() not implemented"
 
     return diagnostics
+

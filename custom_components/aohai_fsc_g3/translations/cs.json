@@ -3,6 +3,13 @@
   "config": {
     "step": {
       "user": {
+        "title": "Způsob připojení",
+        "description": "Vyber způsob připojení měniče.",
+        "data": {
+          "transport": "Způsob připojení"
+        }
+      },
+      "serial": {
         "title": "Nastavení AOHAI FSC-G3 Modbus RTU",
         "description": "Zadej údaje pro připojení měniče AOHAI FSC-G3.",
         "data": {
@@ -11,6 +18,16 @@
           "slave": "Slave ID",
           "update_interval": "Interval aktualizace v sekundách"
         }
+      },
+      "tcp": {
+        "title": "Wi-Fi / Ethernet",
+        "description": "Vyber způsob připojení měniče.",
+        "data": {
+          "host": "IP adresa nebo název převodníku",
+          "tcp_port": "TCP port",
+          "slave": "Modbus ID měniče",
+          "update_interval": "Interval aktualizace (sekundy)"
+        }
       }
     },
     "error": {
@@ -18,7 +35,9 @@
       "invalid_port": "Neplatný sériový port.",
       "invalid_slave": "Slave ID musí být v rozsahu 1 až 245.",
       "invalid_update_interval": "Interval aktualizace musí být alespoň 5 sekund.",
-      "unknown": "Neznámá chyba."
+      "unknown": "Neznámá chyba.",
+      "invalid_host": "Zadejte IP adresu nebo název převodníku.",
+      "invalid_tcp_port": "Port musí být v rozsahu 1 až 65535."
     },
     "abort": {
       "already_configured": "Toto zařízení je už nastavené."

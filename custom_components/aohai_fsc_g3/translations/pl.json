@@ -3,12 +3,29 @@
   "config": {
     "step": {
       "user": {
+        "title": "Rodzaj połączenia",
+        "description": "Wybierz sposób połączenia z falownikiem.",
+        "data": {
+          "transport": "Rodzaj połączenia"
+        }
+      },
+      "serial": {
         "title": "Konfiguracja AOHAI FSC-G3 Modbus RTU",
         "description": "Podaj dane połączenia falownika AOHAI FSC-G3.",
         "data": {
           "port": "Port szeregowy",
           "baudrate": "Prędkość transmisji",
           "slave": "Slave ID",
+          "update_interval": "Interwał aktualizacji (sekundy)"
+        }
+      },
+      "tcp": {
+        "title": "Wi-Fi / Ethernet",
+        "description": "Wybierz sposób połączenia z falownikiem.",
+        "data": {
+          "host": "Adres IP lub nazwa bramki",
+          "tcp_port": "Port TCP",
+          "slave": "Adres Modbus falownika",
           "update_interval": "Interwał aktualizacji (sekundy)"
         }
       }
@@ -18,7 +35,9 @@
       "invalid_port": "Nieprawidłowy port szeregowy.",
       "invalid_slave": "Adres Modbus musi wynosić od 1 do 245.",
       "invalid_update_interval": "Interwał aktualizacji musi wynosić co najmniej 5 sekund.",
-      "unknown": "Nieznany błąd."
+      "unknown": "Nieznany błąd.",
+      "invalid_host": "Podaj adres IP lub nazwę bramki.",
+      "invalid_tcp_port": "Port musi być w zakresie od 1 do 65535."
     },
     "abort": {
       "already_configured": "To urządzenie jest już skonfigurowane."

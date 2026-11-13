@@ -10,7 +10,7 @@ Eksperymentalna integracja HACS dla AOHAI FSC-8/10/12K1P-BL-G3, oparta na projek
 2. Zainstaluj wybraną wersję, uruchom ponownie Home Assistant i dodaj integrację AOHAI FSC-G3 Modbus.
 3. Wybierz port szeregowy i ustaw szybkość oraz adres zgodnie z urządzeniem. Domyślnie: 9600 baud, 8N1, adres 1.
 
-Integracja używa szeregowego Modbus RTU. Połączenie ESPHome z UART oryginalnego modułu Wi-Fi nie jest częścią tej integracji. Nie podłączaj równocześnie dwóch urządzeń nadrzędnych do tej samej magistrali.
+Integracja obsługuje szeregowy Modbus RTU i eksperymentalnie bramki Modbus TCP/RTU przez Wi-Fi lub Ethernet (np. USR-DR164). Instrukcja konfiguracji: [USR-DR164](docs/USR-DR164-CS.md) (po czesku). Połączenie ESPHome z UART oryginalnego modułu Wi-Fi nie jest częścią integracji. Nie podłączaj dwóch urządzeń nadrzędnych do tej samej magistrali.
 
 ## Testowanie
 

@@ -6,7 +6,7 @@ from typing import Optional, Dict, Any
 
 from homeassistant.exceptions import ConfigEntryNotReady
 
-from pymodbus.client import AsyncModbusSerialClient
+from pymodbus.client import AsyncModbusSerialClient, AsyncModbusTcpClient
 from pymodbus.exceptions import ModbusException
 
 from .modbus_map import INPUT_REGISTERS, HOLDING_REGISTERS
@@ -50,8 +50,11 @@ class SandiSolarModbusHub:
         self.hass = hass
         self.entry = entry
 
-        self.port = entry.data["port"]
-        self.baudrate = entry.data["baudrate"]
+        self.transport = entry.data.get("transport", "serial")
+        self.host = entry.data.get("host")
+        self.tcp_port = int(entry.data.get("tcp_port", 8899))
+        self.port = entry.data.get("port") if self.transport == "serial" else f"{self.host}:{self.tcp_port}"
+        self.baudrate = entry.data.get("baudrate", 9600)
         self.slave = entry.data["slave"]
 
         # Interval ber primárně z Options flow.
@@ -69,7 +72,7 @@ class SandiSolarModbusHub:
             0.5,
         )
 
-        self._client: Optional[AsyncModbusSerialClient] = None
+        self._client = None
         self._unit_arg = "device_id" if "device_id" in inspect.signature(AsyncModbusSerialClient.read_input_registers).parameters else "slave"
         self._lock = asyncio.Lock()
         self._cache: Dict[str, Any] = {}
@@ -100,8 +103,6 @@ class SandiSolarModbusHub:
                 if connected:
                     # Důležité pro tvoji verzi pymodbus:
                     # nepředávat slave= ani unit= do čtení/zápisu.
-                    self._client.unit_id = self.slave
-
                     _LOGGER.info(
                         "SANDISOLAR: Connected to %s, baudrate=%s, slave=%s",
                         self.port,
@@ -133,7 +134,15 @@ class SandiSolarModbusHub:
         )
 
     def _create_client(self):
-        """Create Modbus serial client."""
+        """Create a serial RTU or standard Modbus TCP client."""
+
+        if self.transport == "tcp":
+            return AsyncModbusTcpClient(
+                host=self.host,
+                port=self.tcp_port,
+                timeout=3,
+                retries=0,
+            )
 
         return AsyncModbusSerialClient(
             port=self.port,
@@ -202,7 +211,6 @@ class SandiSolarModbusHub:
                 raise ModbusException(f"Failed to reconnect Modbus client on {self.port}")
 
         # Důležité: nepředávat slave= ani unit= do konkrétních Modbus volání.
-        self._client.unit_id = self.slave
 
     async def _request_gap(self):
         """Add small spacing between Modbus RTU requests."""
@@ -428,8 +436,6 @@ class SandiSolarModbusHub:
 
                 # Důležité: unit_id nastavit na klientovi.
                 # Nepředávat slave= ani unit= do Modbus metod.
-                self._client.unit_id = self.slave
-
                 try:
                     result = await asyncio.wait_for(
                         operation(),
@@ -550,4 +556,5 @@ class SandiSolarModbusHub:
             value = (value << 16) | reg
 
         return value
+
 

@@ -2,6 +2,13 @@
   "config": {
     "step": {
       "user": {
+        "title": "Connection type",
+        "description": "Choose a connection to the inverter.",
+        "data": {
+          "transport": "Connection type"
+        }
+      },
+      "serial": {
         "title": "Configure AOHAI FSC-G3 Modbus RTU",
         "description": "Enter connection details for your AOHAI FSC-G3 inverter",
         "data": {
@@ -10,12 +17,24 @@
           "slave": "Slave ID",
           "update_interval": "Update Interval (seconds)"
         }
+      },
+      "tcp": {
+        "title": "Wi-Fi / Ethernet",
+        "description": "Choose a connection to the inverter.",
+        "data": {
+          "host": "Gateway IP address or hostname",
+          "tcp_port": "TCP port",
+          "slave": "Modbus device ID",
+          "update_interval": "Update interval (seconds)"
+        }
       }
     },
     "error": {
       "cannot_connect": "Failed to connect to device",
       "invalid_slave": "Slave ID must be between 1 and 245",
-      "invalid_update_interval": "Update interval must be at least 5 seconds"
+      "invalid_update_interval": "Update interval must be at least 5 seconds",
+      "invalid_host": "Enter an IP address or hostname.",
+      "invalid_tcp_port": "Port must be between 1 and 65535."
     }
   },
   "options": {

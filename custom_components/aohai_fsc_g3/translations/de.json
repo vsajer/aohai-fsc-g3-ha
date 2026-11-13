@@ -3,12 +3,29 @@
   "config": {
     "step": {
       "user": {
+        "title": "Verbindungsart",
+        "description": "Verbindung zum Wechselrichter auswählen.",
+        "data": {
+          "transport": "Verbindungsart"
+        }
+      },
+      "serial": {
         "title": "AOHAI FSC-G3 Modbus RTU konfigurieren",
         "description": "Geben Sie die Verbindungsdaten für Ihren AOHAI FSC-G3-Wechselrichter ein.",
         "data": {
           "port": "Serieller Port",
           "baudrate": "Baudrate",
           "slave": "Slave-ID",
+          "update_interval": "Aktualisierungsintervall (Sekunden)"
+        }
+      },
+      "tcp": {
+        "title": "WLAN / Ethernet",
+        "description": "Verbindung zum Wechselrichter auswählen.",
+        "data": {
+          "host": "IP-Adresse oder Hostname des Gateways",
+          "tcp_port": "TCP-Port",
+          "slave": "Modbus-Geräte-ID",
           "update_interval": "Aktualisierungsintervall (Sekunden)"
         }
       }
@@ -18,7 +35,9 @@
       "invalid_port": "Ungültiger serieller Port.",
       "invalid_slave": "Slave-ID muss zwischen 1 und 245 liegen.",
       "invalid_update_interval": "Das Aktualisierungsintervall muss mindestens 5 Sekunden betragen.",
-      "unknown": "Unbekannter Fehler."
+      "unknown": "Unbekannter Fehler.",
+      "invalid_host": "IP-Adresse oder Hostnamen eingeben.",
+      "invalid_tcp_port": "Der Port muss zwischen 1 und 65535 liegen."
     },
     "abort": {
       "already_configured": "Dieses Gerät ist bereits konfiguriert."

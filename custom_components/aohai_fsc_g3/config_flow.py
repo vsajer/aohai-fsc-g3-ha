@@ -75,7 +75,63 @@ class SandiSolarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 1
 
     async def async_step_user(self, user_input=None):
-        """Handle initial setup."""
+        """Choose serial RTU or Modbus TCP gateway."""
+        if user_input is not None:
+            if user_input["transport"] == "tcp":
+                return await self.async_step_tcp()
+            return await self.async_step_serial()
+
+        return self.async_show_form(
+            step_id="user",
+            data_schema=vol.Schema({
+                vol.Required("transport", default="serial"): selector.SelectSelector(
+                    selector.SelectSelectorConfig(
+                        options=[
+                            {"value": "serial", "label": "USB / RS485 (Modbus RTU)"},
+                            {"value": "tcp", "label": "Wi-Fi / Ethernet (Modbus TCP)"},
+                        ],
+                        mode=selector.SelectSelectorMode.DROPDOWN,
+                    )
+                )
+            }),
+        )
+
+    async def async_step_tcp(self, user_input=None):
+        """Set up a Modbus TCP-to-RTU gateway."""
+        errors = {}
+        if user_input is not None:
+            host = user_input["host"].strip()
+            if not host:
+                errors["host"] = "invalid_host"
+            if not 1 <= user_input["tcp_port"] <= 65535:
+                errors["tcp_port"] = "invalid_tcp_port"
+            if not 1 <= user_input["slave"] <= 245:
+                errors["slave"] = "invalid_slave"
+            interval = int(user_input["update_interval"])
+            if interval < 5:
+                errors["update_interval"] = "invalid_update_interval"
+            if not errors:
+                return self.async_create_entry(
+                    title=f"AOHAI FSC-G3 ({host}:{user_input['tcp_port']})",
+                    data={"transport": "tcp", "host": host,
+                          "tcp_port": user_input["tcp_port"],
+                          "slave": user_input["slave"], "update_interval": interval},
+                )
+        return self.async_show_form(
+            step_id="tcp", errors=errors,
+            data_schema=vol.Schema({
+                vol.Required("host"): str,
+                vol.Required("tcp_port", default=8899): int,
+                vol.Required("slave", default=1): int,
+                vol.Required("update_interval", default="30"): selector.SelectSelector(
+                    selector.SelectSelectorConfig(options=UPDATE_INTERVAL_OPTIONS,
+                                                   mode=selector.SelectSelectorMode.DROPDOWN)
+                ),
+            }),
+        )
+
+    async def async_step_serial(self, user_input=None):
+        """Set up a serial RTU connection."""
         errors = {}
 
         ports = await async_list_serial_ports(self.hass)
@@ -93,6 +149,7 @@ class SandiSolarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 return self.async_create_entry(
                     title=f"AOHAI FSC-G3 ({user_input['port']})",
                     data={
+                        "transport": "serial",
                         "port": user_input["port"],
                         "baudrate": user_input["baudrate"],
                         "slave": user_input["slave"],
@@ -266,4 +323,5 @@ class SandiSolarOptionsFlow(config_entries.OptionsFlow):
             data_schema=schema,
             errors=errors,
         )
+
 
