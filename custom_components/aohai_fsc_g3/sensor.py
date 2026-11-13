@@ -144,6 +144,9 @@ SENSOR_KEYS = [
     "battery_discharge_energy_today",
     "battery_discharge_energy_total",
 
+    "dc_bus_voltage",
+    "generator_voltage",
+    "generator_current",
     "inv_temp",
     "boost_temp",
     "llc_temp",
@@ -1993,6 +1996,9 @@ async def async_setup_entry(hass, entry, async_add_entities):
     coordinator.async_set_updated_data({})
 
     entities = [
+        SimpleSensor(coordinator, "dc_bus_voltage", "DC Bus Voltage", UnitOfElectricPotential.VOLT, SensorDeviceClass.VOLTAGE, "mdi:flash", 1),
+        SimpleSensor(coordinator, "generator_voltage", "Generator Voltage", UnitOfElectricPotential.VOLT, SensorDeviceClass.VOLTAGE, "mdi:generator-portable", 1),
+        SimpleSensor(coordinator, "generator_current", "Generator Current", UnitOfElectricCurrent.AMPERE, SensorDeviceClass.CURRENT, "mdi:generator-portable", 1),
         SimpleSensor(coordinator, "pv1_voltage", "PV1 Voltage",
                      UnitOfElectricPotential.VOLT, SensorDeviceClass.VOLTAGE, "mdi:solar-power", 1),
         SimpleSensor(coordinator, "pv1_current", "PV1 Current",
@@ -2196,3 +2202,4 @@ async def async_setup_entry(hass, entry, async_add_entities):
 
     # Run first real Modbus refresh in background.
     hass.async_create_task(coordinator.async_request_refresh())
+

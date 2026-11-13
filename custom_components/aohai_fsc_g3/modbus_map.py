@@ -11,6 +11,9 @@ class RegisterDef:
 
 INPUT_REGISTERS = {
     "inverter_status": RegisterDef(0),
+    "dc_bus_voltage": RegisterDef(8, 0.1),
+    "generator_voltage": RegisterDef(96, 0.1),
+    "generator_current": RegisterDef(97, 0.1),
 
     "inv_temp": RegisterDef(10, 0.1, signed=True),
     "boost_temp": RegisterDef(11, 0.1, signed=True),
@@ -97,6 +100,23 @@ INPUT_REGISTERS = {
     "total_work_time": RegisterDef(107, scale=1, count=2),
 }
 HOLDING_REGISTERS = {
+    "battery_max_charge_current": RegisterDef(129, 0.01),
+    "battery_stop_discharge_voltage": RegisterDef(130, 0.01),
+    "battery_constant_charge_voltage": RegisterDef(131, 0.01),
+    "battery_cutoff_voltage": RegisterDef(188, 0.1),
+    "battery_float_voltage": RegisterDef(190, 0.01),
+    "battery_to_ac_voltage": RegisterDef(191, 0.1),
+    "ac_to_battery_voltage": RegisterDef(192, 0.1),
+    "boost_charge_max_time": RegisterDef(194, 1),
+    "battery_undervoltage_alarm": RegisterDef(195, 0.1),
+    "grid_power_compensation": RegisterDef(215, 1),
+    "smart_load_off_soc": RegisterDef(226, 1),
+    "parallel_mode": RegisterDef(211, 1),
+    "parallel_role": RegisterDef(213, 1),
+    "bms_work_mode": RegisterDef(214, 1),
+    "battery_subtype": RegisterDef(125, 1),
+    "second_port_mode": RegisterDef(218, 1),
+
     # ---------------------------------------------------------------------
     # System
     # ---------------------------------------------------------------------
@@ -172,3 +192,4 @@ HOLDING_REGISTERS = {
     # ---------------------------------------------------------------------
     "bluetooth_enable": RegisterDef(231),
 }
+

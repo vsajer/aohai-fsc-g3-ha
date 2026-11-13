@@ -1,3 +1,4 @@
+import inspect
 import asyncio
 import logging
 import time
@@ -69,6 +70,7 @@ class SandiSolarModbusHub:
         )
 
         self._client: Optional[AsyncModbusSerialClient] = None
+        self._unit_arg = "device_id" if "device_id" in inspect.signature(AsyncModbusSerialClient.read_input_registers).parameters else "slave"
         self._lock = asyncio.Lock()
         self._cache: Dict[str, Any] = {}
         self._last_request_time = 0.0
@@ -309,6 +311,10 @@ class SandiSolarModbusHub:
             _LOGGER.error("SANDISOLAR: Unknown holding register '%s'", key)
             return False
 
+        if HOLDING_REGISTERS[key].address == 220:
+            _LOGGER.error("AOHAI FSC-G3: write to disputed register 220 blocked")
+            return False
+
         locked = await self._acquire_lock(WRITE_LOCK_TIMEOUT)
 
         if not locked:
@@ -335,6 +341,7 @@ class SandiSolarModbusHub:
             operation=lambda: self._client.read_input_registers(
                 address=reg.address,
                 count=reg.count,
+                **{self._unit_arg: self.slave},
             ),
         )
 
@@ -362,6 +369,7 @@ class SandiSolarModbusHub:
             operation=lambda: self._client.read_holding_registers(
                 address=reg.address,
                 count=reg.count,
+                **{self._unit_arg: self.slave},
             ),
         )
 
@@ -390,6 +398,7 @@ class SandiSolarModbusHub:
             operation=lambda: self._client.write_register(
                 address=reg.address,
                 value=raw,
+                **{self._unit_arg: self.slave},
             ),
         )
 
