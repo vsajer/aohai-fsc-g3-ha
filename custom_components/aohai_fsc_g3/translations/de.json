@@ -1,0 +1,41 @@
+{
+  "title": "AOHAI FSC-G3 / SD-PRO-EU Modbus RTU",
+  "config": {
+    "step": {
+      "user": {
+        "title": "AOHAI FSC-G3 Modbus RTU konfigurieren",
+        "description": "Geben Sie die Verbindungsdaten für Ihren AOHAI FSC-G3-Wechselrichter ein.",
+        "data": {
+          "port": "Serieller Port",
+          "baudrate": "Baudrate",
+          "slave": "Slave-ID",
+          "update_interval": "Aktualisierungsintervall (Sekunden)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung zum Gerät fehlgeschlagen.",
+      "invalid_port": "Ungültiger serieller Port.",
+      "invalid_slave": "Slave-ID muss zwischen 1 und 247 liegen.",
+      "invalid_update_interval": "Das Aktualisierungsintervall muss mindestens 5 Sekunden betragen.",
+      "unknown": "Unbekannter Fehler."
+    },
+    "abort": {
+      "already_configured": "Dieses Gerät ist bereits konfiguriert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "AOHAI FSC-G3 Modbus RTU Optionen",
+        "description": "Aktualisierungsintervall anpassen.",
+        "data": {
+          "update_interval": "Aktualisierungsintervall (Sekunden)"
+        }
+      }
+    },
+    "error": {
+      "invalid_update_interval": "Das Aktualisierungsintervall muss mindestens 5 Sekunden betragen."
+    }
+  }
+}

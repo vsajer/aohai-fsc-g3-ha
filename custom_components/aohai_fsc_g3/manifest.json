@@ -1,0 +1,16 @@
+{
+  "domain": "aohai_fsc_g3",
+  "name": "AOHAI FSC-G3 Modbus (experimental)",
+  "codeowners": [
+    "@vsajer"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/vsajer/aohai-fsc-g3-ha",
+  "integration_type": "hub",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/vsajer/aohai-fsc-g3-ha/issues",
+  "requirements": [
+    "pymodbus"
+  ],
+  "version": "0.1.0"
+}

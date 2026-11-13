@@ -1,0 +1,76 @@
+{
+  "states": {
+    "inverter_status": {
+      "0": "Oczekiwanie",
+      "1": "Tryb sieciowy",
+      "2": "Tryb wyspowy",
+      "3": "Błąd",
+      "4": "Aktualizacja / miganie",
+      "5": "Bypass",
+      "6": "Samoczynne ładowanie"
+    },
+    "battery_status": {
+      "0": "Normalny",
+      "1": "Ładowanie",
+      "2": "Rozładowanie",
+      "3": "Gotowość"
+    },
+    "fault_word0": {
+      "0": "Brak błędu",
+      "103": "Zbyt wysoki offset DC falownika",
+      "105": "Przeciążenie wyjścia AC bypassu",
+      "200": "Zbyt niskie napięcie wyjściowe w trybie wyspowym",
+      "201": "Zbyt wysokie napięcie wyjściowe w trybie wyspowym",
+      "202": "Zwarcie na wyjściu w trybie wyspowym",
+      "203": "Przeciążenie wyjścia w trybie wyspowym",
+      "204": "Nieprawidłowa składowa DC na wyjściu w trybie wyspowym",
+      "301": "Obwód baterii jest otwarty",
+      "305": "Przepięcie baterii",
+      "306": "Nadmierny prąd baterii",
+      "307": "Błąd komunikacji z baterią",
+      "308": "Błąd BMS",
+      "400": "Przepięcie PV",
+      "403": "Zwarcie PV",
+      "404": "Odwrotna polaryzacja PV",
+      "500": "Nieprawidłowe napięcie magistrali DC",
+      "501": "Nieprawidłowy pomiar napięcia magistrali DC",
+      "502": "Nieprawidłowa komunikacja wewnętrzna urządzenia",
+      "505": "Błąd podłączenia czujnika temperatury",
+      "506": "Przegrzanie urządzenia",
+      "507": "Błąd przekaźnika",
+      "509": "Przekroczony czas zabezpieczenia przed przepływem zwrotnym",
+      "510": "Niezgodna wersja oprogramowania",
+      "511": "Błąd wentylatora",
+      "513": "Błąd pracy równoległej"
+    },
+    "warning_main": {
+      "0": "OK",
+      "103": "Sieć niedostępna",
+      "104": "Napięcie sieci poza zakresem",
+      "105": "Częstotliwość sieci poza zakresem",
+      "106": "Brak napięcia wyjściowego z generatora",
+      "107": "Napięcie wyjściowe generatora poza zakresem",
+      "108": "Częstotliwość wyjściowa generatora poza zakresem",
+      "302": "Niski poziom baterii",
+      "304": "Nieprawidłowe informacje z BMS",
+      "305": "Alarm niskiego napięcia baterii",
+      "502": "Błąd odczytu/zapisu pamięci"
+    },
+    "warning_sub": {
+      "0": "Brak ostrzeżenia"
+    },
+    "battery_eta": {
+      "waiting": "Czekam na obliczenie",
+      "not_today": "Nie dzisiaj",
+      "will_be_full_at": "Będzie naładowana o {time}",
+      "was_full_at": "Była naładowana o {time}"
+    },
+    "unknown": {
+      "fault_code": "Nieznany kod błędu",
+      "warning_code": "Nieznany kod ostrzeżenia",
+      "sub_warning_code": "Nieznany kod podrzędnego ostrzeżenia",
+      "battery_status": "Nieznany stan BMS",
+      "inverter_status": "Nieznany stan falownika"
+    }
+  }
+}

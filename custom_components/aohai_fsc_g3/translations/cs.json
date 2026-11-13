@@ -1,0 +1,41 @@
+{
+  "title": "AOHAI FSC-G3 / SD-PRO-EU Modbus RTU",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Nastavení AOHAI FSC-G3 Modbus RTU",
+        "description": "Zadej údaje pro připojení měniče AOHAI FSC-G3.",
+        "data": {
+          "port": "Sériový port",
+          "baudrate": "Rychlost komunikace",
+          "slave": "Slave ID",
+          "update_interval": "Interval aktualizace v sekundách"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Nepodařilo se připojit k zařízení.",
+      "invalid_port": "Neplatný sériový port.",
+      "invalid_slave": "Slave ID musí být v rozsahu 1 až 247.",
+      "invalid_update_interval": "Interval aktualizace musí být alespoň 5 sekund.",
+      "unknown": "Neznámá chyba."
+    },
+    "abort": {
+      "already_configured": "Toto zařízení je už nastavené."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Možnosti AOHAI FSC-G3 Modbus RTU",
+        "description": "Uprav interval aktualizace.",
+        "data": {
+          "update_interval": "Interval aktualizace v sekundách"
+        }
+      }
+    },
+    "error": {
+      "invalid_update_interval": "Interval aktualizace musí být alespoň 5 sekund."
+    }
+  }
+}

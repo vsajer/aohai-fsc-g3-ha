@@ -1,0 +1,76 @@
+{
+  "states": {
+    "inverter_status": {
+      "0": "Čekání",
+      "1": "Síťový režim",
+      "2": "Ostrovní režim",
+      "3": "Porucha",
+      "4": "Aktualizace / blikání",
+      "5": "Bypass",
+      "6": "Vlastní nabíjení"
+    },
+    "battery_status": {
+      "0": "Normální stav",
+      "1": "Nabíjení",
+      "2": "Vybíjení",
+      "3": "Pohotovostní režim"
+    },
+    "fault_word0": {
+      "0": "Bez poruchy",
+      "103": "DC offset měniče je příliš vysoký",
+      "105": "Bypass AC výstup je přetížený",
+      "200": "Výstupní napětí v ostrovním režimu je příliš nízké",
+      "201": "Výstupní napětí v ostrovním režimu je příliš vysoké",
+      "202": "Zkrat na výstupu v ostrovním režimu",
+      "203": "Výstup v ostrovním režimu je přetížený",
+      "204": "Abnormální DC složka na výstupu v ostrovním režimu",
+      "301": "Baterie je odpojená",
+      "305": "Přepětí baterie",
+      "306": "Nadproud baterie",
+      "307": "Chyba komunikace s baterií",
+      "308": "Porucha BMS",
+      "400": "Přepětí FV vstupu",
+      "403": "Zkrat FV vstupu",
+      "404": "Obrácená polarita FV vstupu",
+      "500": "Abnormální napětí DC sběrnice",
+      "501": "Chyba měření napětí DC sběrnice",
+      "502": "Chyba vnitřní komunikace zařízení",
+      "505": "Chyba připojení teplotního čidla",
+      "506": "Přehřátí zařízení",
+      "507": "Chyba relé",
+      "509": "Timeout ochrany proti zpětnému toku",
+      "510": "Neshodná verze softwaru",
+      "511": "Chyba ventilátoru",
+      "513": "Chyba paralelního provozu"
+    },
+    "warning_main": {
+      "0": "OK",
+      "103": "Síť není dostupná",
+      "104": "Napětí sítě je mimo rozsah",
+      "105": "Frekvence sítě je mimo rozsah",
+      "106": "Generátor nemá výstupní napětí",
+      "107": "Výstupní napětí generátoru je mimo rozsah",
+      "108": "Výstupní frekvence generátoru je mimo rozsah",
+      "302": "Nízký stav baterie",
+      "304": "Neplatné informace z BMS",
+      "305": "Alarm nízkého napětí baterie",
+      "502": "Chyba čtení/zápisu paměti"
+    },
+    "warning_sub": {
+      "0": "OK"
+    },
+    "battery_eta": {
+      "waiting": "čekám na výpočet",
+      "not_today": "dnes nebude",
+      "will_be_full_at": "Bude nabito v {time}",
+      "was_full_at": "Bylo nabito v {time}"
+    },
+    "unknown": {
+      "fault_code": "Neznámý kód poruchy",
+      "warning_code": "Neznámý kód varování",
+      "sub_warning_code": "Neznámý kód podvarování",
+      "battery_status": "Neznámý stav BMS",
+      "inverter_status": "Neznámý stav měniče"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "title": "AOHAI FSC-G3 / SD-PRO-EU Modbus RTU",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Konfiguracja AOHAI FSC-G3 Modbus RTU",
+        "description": "Podaj dane połączenia falownika AOHAI FSC-G3.",
+        "data": {
+          "port": "Port szeregowy",
+          "baudrate": "Prędkość transmisji",
+          "slave": "Slave ID",
+          "update_interval": "Interwał aktualizacji (sekundy)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Nie udało się połączyć z urządzeniem.",
+      "invalid_port": "Nieprawidłowy port szeregowy.",
+      "invalid_slave": "Slave ID musi być w zakresie od 1 do 247.",
+      "invalid_update_interval": "Interwał aktualizacji musi wynosić co najmniej 5 sekund.",
+      "unknown": "Nieznany błąd."
+    },
+    "abort": {
+      "already_configured": "To urządzenie jest już skonfigurowane."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opcje AOHAI FSC-G3 Modbus RTU",
+        "description": "Dostosuj interwał aktualizacji.",
+        "data": {
+          "update_interval": "Interwał aktualizacji (sekundy)"
+        }
+      }
+    },
+    "error": {
+      "invalid_update_interval": "Interwał aktualizacji musi wynosić co najmniej 5 sekund."
+    }
+  }
+}
