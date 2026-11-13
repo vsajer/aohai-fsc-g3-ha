@@ -24,7 +24,7 @@ WRITE_LOCK_TIMEOUT = 5.0
 
 # Malá pauza mezi RTU požadavky.
 # RS485 není závodní sběrnice, spíš "mluv jeden po druhém".
-MIN_REQUEST_GAP = 0.12
+MIN_REQUEST_GAP = 0.85
 
 # Krátká pauza před opakováním neúspěšného požadavku.
 REQUEST_RETRY_DELAY = 0.25
@@ -213,7 +213,6 @@ class SandiSolarModbusHub:
         if elapsed < MIN_REQUEST_GAP:
             await asyncio.sleep(MIN_REQUEST_GAP - elapsed)
 
-        self._last_request_time = time.monotonic()
 
     async def _acquire_lock(self, timeout: float) -> bool:
         """Acquire Modbus lock with timeout."""
@@ -311,8 +310,8 @@ class SandiSolarModbusHub:
             _LOGGER.error("SANDISOLAR: Unknown holding register '%s'", key)
             return False
 
-        if HOLDING_REGISTERS[key].address == 220:
-            _LOGGER.error("AOHAI FSC-G3: write to disputed register 220 blocked")
+        if HOLDING_REGISTERS[key].address in (218, 220):
+            _LOGGER.error("AOHAI FSC-G3: write to disputed register blocked: %s", HOLDING_REGISTERS[key].address)
             return False
 
         locked = await self._acquire_lock(WRITE_LOCK_TIMEOUT)
@@ -431,10 +430,13 @@ class SandiSolarModbusHub:
                 # Nepředávat slave= ani unit= do Modbus metod.
                 self._client.unit_id = self.slave
 
-                result = await asyncio.wait_for(
-                    operation(),
-                    timeout=MODBUS_OPERATION_TIMEOUT,
-                )
+                try:
+                    result = await asyncio.wait_for(
+                        operation(),
+                        timeout=MODBUS_OPERATION_TIMEOUT,
+                    )
+                finally:
+                    self._last_request_time = time.monotonic()
 
                 if result is None:
                     _LOGGER.debug(
